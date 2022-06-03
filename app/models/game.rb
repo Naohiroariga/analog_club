@@ -1,6 +1,6 @@
 class Game < ApplicationRecord
   has_many :comments, dependent: :destroy
-  has_many :game_tags, dependent: :destroy, foreign_key: 'book_id'
+  has_many :game_tags, dependent: :destroy, foreign_key: 'game_id'
   has_many :tags, through: :game_tags
   has_many :favorites, dependent: :destroy
 
