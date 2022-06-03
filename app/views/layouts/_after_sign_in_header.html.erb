@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary text-white">
   <div class="container">
     <div class="nav-brand">
       <%= link_to "アナログ部", root_path %>
@@ -11,13 +11,13 @@
          <%= link_to "About", about_path %>
         </li>
         <li class="nav-link">
-         <%= link_to "マイページ", user_paht(current_user) %>
+         <%= link_to "マイページ", user_path(current_user) %>
         </li>
         <li class="nav-link">
          <%= link_to "投稿一覧",  games_path %>
         </li>
         <li class="nav-link">
-          <%= link_to "ログアウト", destroy_user_session, method: :delete %>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
         </li>
       </ul>
     </div>
