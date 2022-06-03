@@ -1,43 +1,35 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'games/index'
-    get 'games/show'
-    get 'games/edit'
-  end
-  namespace :admin do
-    get 'users/index'
-    get 'users/show'
-    get 'users/edit'
-  end
-  namespace :public do
-    get 'chats/show'
-  end
-  namespace :public do
-    get 'games/new'
-    get 'games/edit'
-    get 'games/show'
-    get 'games/index'
-  end
-  namespace :public do
-    get 'relationships/followings'
-    get 'relationships/followers'
-  end
-  namespace :public do
-    get 'users/show'
-    get 'users/edit'
-  end
-  namespace :public do
-    get 'homes/top'
-    get 'homes/about'
-  end
+
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
-  
+
   devise_for :users, skip: [:passwords], controllers: {
-    registrations: "public/ragistrations",
+    registrations: "public/registrations",
     sessions: "public/sessions"
   }
-  
+
+  scope module: :public do
+    root to: "homes#top"
+    get "about" => "homes#about"
+    resources :users, only: [:show, :edit, :update] do
+      resource :relationships, only: [:create, :destroy]
+      get "followings" => "relationships#followings", as: "followings"
+      get "followers" => "relationships#followers", as: "followers"
+    end
+    resources :games do
+      resource :favorites, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy]
+    end
+    resources :chats, only: [:show, :create]
+  end
+
+  namespace :admin do
+    resources :users, only: [:index, :show, :edit, :update]
+    resources :games, only: [:index, :show, :edit, :update] do
+      resources :comments, only: [:update]
+    end
+  end
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
