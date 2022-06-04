@@ -1,4 +1,5 @@
 class Game < ApplicationRecord
+  belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :game_tags, dependent: :destroy, foreign_key: 'game_id'
   has_many :tags, through: :game_tags
