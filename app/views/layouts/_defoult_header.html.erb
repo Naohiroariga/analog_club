@@ -1,20 +1,18 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-secondary text-white">
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
   <div class="container">
-    <div class="nav-brand">
-      <%= link_to "アナログ部", root_path %>
-    </div>
+    <a class="navbar-brand" href="/"><span>アナログ部</span></a>
 
     <div class="d-flex align-items-end justify-content-center flex-column bd-highlight mb-3 mt-2" style="height: 80px;">
       <ul class="navbar-nav mt-2">
 
         <li class="nav-link">
-         <%= link_to "About", about_path %>
+         <%= link_to "About", about_path, class:" text-light" %>
         </li>
         <li class="nav-link">
-         <%= link_to "新規登録", new_user_registration_path %>
+         <%= link_to "新規登録", new_user_registration_path, class:" text-light" %>
         </li>
         <li class="nav-link">
-         <%= link_to "ログイン", new_user_session_path %>
+         <%= link_to "ログイン", new_user_session_path, class:" text-light" %>
         </li>
       </ul>
     </div>
