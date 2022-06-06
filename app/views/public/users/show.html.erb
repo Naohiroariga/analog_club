@@ -6,7 +6,7 @@
    <ul>
      <li>ニックネーム： <%= @user.name %></li>
      <li>コメント： <%= @user.comment %></li>
-     <li>投稿数：<%= @user.games %></li>
+     <li>投稿数：<%= @user.games.count %></li>
      <li>いいね： <%= @user.favorites.count %></li>
      <li>フォロー数： <%= @user.followings.count %></li>
      <li>フォロワー数： <%= @user.followers.count %></li>
