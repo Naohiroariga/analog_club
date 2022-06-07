@@ -1,4 +1,6 @@
 class Public::GamesController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @game = Game.new
   end
@@ -21,6 +23,7 @@ class Public::GamesController < ApplicationController
   end
 
   def index
+    @games = Game.all
   end
 
   private
