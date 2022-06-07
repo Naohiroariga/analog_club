@@ -52,5 +52,9 @@
   <% if @game.user_id == current_user.id %>
     <%= link_to "編集する", edit_game_path(@game), class: "btn btn-success" %>
   <% end %>
+  <br>
+  <h2>コメント</h2>
+  <%= render "public/comments/comment_list", game: @game %>
+  <%= render "public/comments/form", game: @game, comment: @comment %>
 
 </div>
