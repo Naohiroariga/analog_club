@@ -13,7 +13,7 @@
               概要：<br>
               <%= game.overview %>
             </p>
-            <p>いいね: <%= game.favorites.count %></p>
+            <%= render "public/favorites/favorites", game: game %><br>
             <%= link_to "詳細ページへ", game_path(game.id), class: "btn btn-primary" %>
           </div>
         </div>
