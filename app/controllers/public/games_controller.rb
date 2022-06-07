@@ -16,6 +16,21 @@ class Public::GamesController < ApplicationController
   end
 
   def edit
+    @game = Game.find(params[:id])
+    if @game.user_id == current_user.id
+      render "edit"
+    else
+      redirect_to games_path
+    end
+  end
+
+  def update
+    @game = Game.find(params[:id])
+    if @game.update(game_params)
+      redirect_to game_path(@game)
+    else
+      render "edit"
+    end
   end
 
   def show
