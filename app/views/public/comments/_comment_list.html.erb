@@ -1,0 +1,11 @@
+<% game.comments.each do |comment| %>
+  <div class="comment my-3">
+    <%= image_tag comment.user.get_profile_image, size: "50x50" %>
+    <%= comment.user.name %>
+    <%= comment.comment %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %>
+    <% if comment.user_id == current_user.id %>
+      <%= link_to "コメント削除", game_comment_path(comment.game, comment), method: :delete, class: "btn btn-danger" %>
+    <% end %>
+  </div>
+<% end %>
