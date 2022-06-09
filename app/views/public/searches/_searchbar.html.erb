@@ -1,0 +1,8 @@
+<%= form_with method: :get, url: search_path do |f| %>
+  <div class="border p-1">
+    <%= f.text_field :word, placeholder: "Search", style: "border: 0; outline: 0;" %>
+    <%= f.button :type => "submit", style: "border-style: none; background: none;" do %>
+      <i class="fas fa-search"></i>
+    <% end %>
+  </div>
+<% end %>

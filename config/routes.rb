@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
-  
+
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :destroy]
     end
     resources :chats, only: [:show, :create]
+    get "search" => "searches#search", as: "search"
   end
 
   namespace :admin do
