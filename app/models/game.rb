@@ -35,6 +35,14 @@ class Game < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
+  def self.looks(word)
+    if word.nil?
+      @game = Game.where("name_LIKE", "%#{word}%")
+    else
+      @game = Game.all
+    end
+  end
+
 
   def save_tags(savebook_tags)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
