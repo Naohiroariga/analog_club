@@ -1,8 +1,8 @@
 <div class="container">
-  <h2>"<%= @word %>"の検索結果</h2>
+  <h2>絞り込み結果</h2>
 
   <div class="sort">
-    <%= link_to "投稿が新しい順", search_path(word: @word, model: @model, new_date: true) %>  | <%= link_to "いいねの多い順", search_path(word: @word, model: @model, favorite: true) %>
+    <%= link_to "投稿が新しい順", filter_path(tag: @tag, games: @games, model: @model, word: @word, new_date: true) %>  | <%= link_to "いいねの多い順", filter_path(tag: @tag, games: @games,  model: @model, word: @word, favorite: true) %>
   </div>
     <% @tags.each do |tag| %>
       <%= link_to tag, filter_path(tag: tag, games: @games, model: @model, word: @word), class: "btn btn-outline-dark" %>
@@ -15,6 +15,4 @@
 
     <% end %>
   </div>
-
-
 </div>

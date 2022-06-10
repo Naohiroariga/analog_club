@@ -1,6 +1,12 @@
 <div class="container">
   <h2>投稿一覧</h2>
 
+  <div class="sort">
+    <%= link_to "投稿が新しい順", games_path(new_date: true) %> | <%= link_to "いいねの多い順", games_path(favorite: true) %>
+  </div>
+    <% @tags.each do |tag| %>
+      <%= link_to tag, search_path(word: tag, model: "tag"), class: "btn btn-outline-dark" %>
+    <% end %>
   <div class="row">
     <%= render "public/games/game_index", games: @games %>
   </div>

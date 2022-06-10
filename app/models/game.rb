@@ -36,27 +36,22 @@ class Game < ApplicationRecord
   end
 
   def self.looks(word)
-    if word.nil?
-      @game = Game.where("name_LIKE", "%#{word}%")
-    else
-      @game = Game.all
-    end
+      Game.where('name LIKE ?', '%'+word+'%')
   end
 
-
-  def save_tags(savebook_tags)
-    current_tags = self.tags.pluck(:name) unless self.tags.nil?
-    old_tags = current_tags - savebook_tags
-    new_tags = savebook_tags - current_tags
+  def save_tags(savegame_tags)
+    current_tags = self.tags.pluck(:tag) unless self.tags.nil?
+    old_tags = current_tags - savegame_tags
+    new_tags = savegame_tags - current_tags
 
     old_tags.each do |old_name|
-      self.tags.delete Tag.find_by(name:old_name)
+      self.tags.delete Tag.find_by(tag: old_name)
     end
 
     new_tags.each do |new_name|
-      book_tag = Tag.find_or_create_by(name:new_name)
-      self.tags << book_tag
-   end
+      game_tag = Tag.find_or_create_by(tag: new_name)
+      self.tags << game_tag
+    end
   end
 
 end

@@ -8,11 +8,19 @@ class Public::GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     @game.user_id = current_user.id
+    tag_list = params[:game][:tag_name].split(',')
     if @game.save
+      @game.save_tags(tag_list)
       redirect_to game_path(@game)
     else
       render "new"
     end
+  end
+
+  def destroy
+    @game = Game.find(params[:id])
+    @game.destroy
+    redirect_to games_path
   end
 
   def edit
@@ -26,7 +34,9 @@ class Public::GamesController < ApplicationController
 
   def update
     @game = Game.find(params[:id])
+    tag_list = params[:game][:tag_name].split(',')
     if @game.update(game_params)
+      @game.save_tags(tag_list)
       redirect_to game_path(@game)
     else
       render "edit"
@@ -39,7 +49,23 @@ class Public::GamesController < ApplicationController
   end
 
   def index
-    @games = Game.all
+    if params[:new_date]
+      @games = Game.all.order(created_at: :desc)
+    elsif params[:favorite]
+      favorite = Game.find(Favorite.group(:game_id).order('count(game_id) desc').pluck(:game_id))
+      all = Game.all
+      @games = favorite + (all - favorite)
+    else
+      @games = Game.all
+    end
+    tags = []
+    @games.each do |game|
+      game.tags.each do |tag|
+        tags << tag.tag
+      end
+      @tags = tags.uniq
+    end
+
   end
 
   private
