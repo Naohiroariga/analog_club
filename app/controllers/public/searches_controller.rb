@@ -9,7 +9,7 @@ class Public::SearchesController < ApplicationController
         all = Game.looks(@word)
         favorite = Game.find(Favorite.group(:game_id).order('count(game_id) desc').pluck(:game_id))
 
-        @games = favorite - (favorite -all) + (all - favorite)
+        @games = (favorite - (favorite - all) + (all - favorite))
       else
         @games = Game.looks(@word)
       end
@@ -20,7 +20,7 @@ class Public::SearchesController < ApplicationController
         all = Tag.looks_tag(@word)
         favorite = Game.find(Favorite.group(:game_id).order('count(game_id) desc').pluck(:game_id))
 
-        @games = favorite - (favorite -all) + (all - favorite)
+        @games = favorite - (favorite - all) + (all - favorite)
       else
        @games = Tag.looks_tag(@word)
       end
@@ -47,7 +47,7 @@ class Public::SearchesController < ApplicationController
         games = Game.looks(@word)
         favorite = Game.find(Favorite.group(:game_id).order('count(game_id) desc').pluck(:game_id))
         filter = games - (games - search)
-        @games = favorite - (favorite -filter) + (filter - favorite)
+        @games = favorite - (favorite - filter) + (filter - favorite)
       else
         games = Game.looks(@word)
         @games = games - (games - search)
@@ -60,7 +60,7 @@ class Public::SearchesController < ApplicationController
         games = Game.find(params[:games])
         favorite = Game.find(Favorite.group(:game_id).order('count(game_id) desc').pluck(:game_id))
 
-        @games = favorite - (favorite -games) + (games - favorite)
+        @games = favorite - (favorite - games) + (games - favorite)
       else
         games = Game.find(params[:games])
         @games = games - (games - search)
