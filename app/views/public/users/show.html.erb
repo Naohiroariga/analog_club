@@ -19,6 +19,14 @@
   <%= link_to "プロフィールの編集", edit_user_path(current_user), class:"btn btn-success" %>
   <%= link_to "投稿する", new_game_path, class:"btn btn-primary" %>
 
+   <h2>投稿一覧</h2>
+   <div class="games row">
+     <% if @user.games.empty? %>
+       <h3>投稿はありません</h3>
+     <% else %>
+       <%= render "public/games/game_index", games: @user.games %>
+     <% end %>
+   </div>
 
 
 
