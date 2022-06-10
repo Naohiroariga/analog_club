@@ -20,7 +20,7 @@ class Public::SearchesController < ApplicationController
         all = Tag.looks_tag(@word)
         favorite = Game.find(Favorite.group(:game_id).order('count(game_id) desc').pluck(:game_id))
 
-        @games = favorite - (favorite - all) + (all - favorite)
+        @games = (favorite - (favorite - all) + (all - favorite))
       else
        @games = Tag.looks_tag(@word)
       end
