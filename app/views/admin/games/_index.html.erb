@@ -14,7 +14,8 @@
             <%= tag.tag %>
           <% end %>
         </p>
-        <%= link_to "詳細ページへ", game_path(game.id), class: "btn btn-primary" %>
+        <i  class="fas fa-heart" aria-hidden="true"></i><%= game.favorites.count %>いいね<br>
+        <%= link_to "詳細ページへ", admin_game_path(game.id), class: "btn btn-primary" %>
       </div>
     </div>
   </div>
