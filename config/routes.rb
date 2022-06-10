@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     end
     resources :chats, only: [:show, :create]
     get "search" => "searches#search", as: "search"
+    get "filter" => "searches#filter", as: "filter"
   end
 
   namespace :admin do
