@@ -1,10 +1,20 @@
 <% game.comments.each do |comment| %>
   <div class="comment my-3">
-    <%= image_tag comment.user.get_profile_image, size: "50x50" %>
-    <%= comment.user.name %>
-    <%= comment.comment %>
-    <%= comment.created_at.strftime('%Y/%m/%d') %>
-    <% if comment.user_id == current_user.id %>
+    <% if comment.is_delete == true %>
+      このコメントは管理者により削除されております
+    <% else %>
+      <%= image_tag comment.user.get_profile_image, size: "50x50" %>
+      <%= comment.user.name %>
+      <%= comment.comment %>
+      <%= comment.created_at.strftime('%Y/%m/%d') %>
+    <% end %>
+    <% if admin_signed_in? %>
+      <% if comment.is_delete == false %>
+        <%= link_to "コメント削除", admin_game_comment_path(comment.game, comment, is_delete: true), method: :patch, class: "btn btn-danger" %>
+      <% elsif comment.is_delete == true %>
+        <%= link_to "コメント削除取り消し", admin_game_comment_path(comment.game, comment, is_delete: false), method: :patch, class: "btn btn-primary" %>
+      <% end %>
+    <% elsif comment.user_id == current_user.id %>
       <%= link_to "コメント削除", game_comment_path(comment.game, comment), method: :delete, class: "btn btn-danger" %>
     <% end %>
   </div>
