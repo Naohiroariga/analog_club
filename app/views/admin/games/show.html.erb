@@ -1,2 +1,15 @@
-<h1>Admin::Games#show</h1>
-<p>Find me in app/views/admin/games/show.html.erb</p>
+<div class="container">
+  <h2>ゲーム詳細</h2>
+
+  <% if @game.is_delete == true %>
+    <h3>このページは削除されています。</h3>
+  <% end %>
+
+  <%= render "public/games/show", game: @game %>
+
+  <% if @game.is_delete == false %>
+    <%= link_to "投稿を削除する", admin_game_path(@game, is_delete: true), method: :patch, class: "btn btn-danger" %>
+  <% else %>
+    <%= link_to "投稿の削除を取り消す", admin_game_path(@game, is_delete: false), method: :patch, class: "btn btn-primary" %>
+  <% end %>
+</div>

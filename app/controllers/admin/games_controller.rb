@@ -21,8 +21,15 @@ class Admin::GamesController < ApplicationController
   end
 
   def show
+    @game = Game.find(params[:id])
   end
 
   def edit
+  end
+
+  def update
+    @game = Game.find(params[:id])
+    @game.update(is_delete: params[:is_delete])
+    redirect_to admin_game_path(@game)
   end
 end
