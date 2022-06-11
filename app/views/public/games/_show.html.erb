@@ -1,0 +1,50 @@
+  <%= image_tag game.image, size: "200x200" %>
+  <p>投稿者</p> <%= link_to game.user.name, user_path(game.user_id) %>
+  <p>ゲーム名</p> <%= game.name %>
+  <p>概要</p> <%= game.overview %>
+  <p>操作説明</p> <%= game.how_to_use %>
+  <p>タグ</p>
+    <% game.tags.each do |tag| %>
+      <%= link_to tag.tag, search_path(word: tag.tag, model: "tag") %>
+    <% end %>
+  <p>評価</p>
+
+  <canvas id="myChart" width="400" hight="400"></canvas>
+　<script>
+   $(document).on('turbolinks:load', function() {
+     var ctx = document.getElementById('myChart');
+     var myChart = new Chart(ctx, {
+       type: 'radar',
+       data: {
+         labels: ['ゲーム性', '戦略性', '協力性', '盛り上がり度', '運'],
+         datasets: [{
+           label: "評点",
+           data: [
+             <%= game.game_quality.to_i %>,
+             <%= game.strategic.to_i %>,
+             <%= game.cooperation.to_i %>,
+             <%= game.excitement.to_i %>,
+             <%= game.luck.to_i %>
+           ],
+           borderColor: "rgba(0,0,255,1)",
+           backgroundColor: 'rgba(54, 162, 235, 0.2)',
+         }],
+       },
+       options: {
+         title: {
+           display: true,
+           text: 'ゲーム評価'
+         },
+         responsive: false,
+         scales: {
+            r: {
+              min: 0,
+              max: 5,
+              ticks: {stepSize: 1},
+              },
+            },
+         }
+     });
+   });
+
+  </script>
