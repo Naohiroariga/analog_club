@@ -1,16 +1,19 @@
 <div class="container">
   <h2>ゲーム詳細</h2>
-
-  <%= render "public/games/show", game: @game %>
-  <%= render "public/favorites/favorites", game: @game %>
-  <br>
-  <% if @game.user_id == current_user.id %>
-    <%= link_to "編集する", edit_game_path(@game), class: "btn btn-success" %>
-    <%= link_to "削除する", game_path(@game), method: :delete, class: "btn btn-danger" %>
+　<% if @game.is_delete == true %>
+　  この投稿は管理者により削除されております。
+　<% else %>
+    <%= render "public/games/show", game: @game %>
+    <%= render "public/favorites/favorites", game: @game %>
+    <br>
+    <% if @game.user_id == current_user.id %>
+      <%= link_to "編集する", edit_game_path(@game), class: "btn btn-success" %>
+      <%= link_to "削除する", game_path(@game), method: :delete, class: "btn btn-danger" %>
+    <% end %>
   <% end %>
-  <br>
-  <h2>コメント</h2>
-  <%= render "public/comments/comment_list", game: @game %>
-  <%= render "public/comments/form", game: @game, comment: @comment %>
+    <br>
+    <h2>コメント</h2>
+    <%= render "public/comments/comment_list", game: @game %>
+    <%= render "public/comments/form", game: @game, comment: @comment %>
 
 </div>

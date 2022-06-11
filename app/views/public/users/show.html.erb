@@ -1,33 +1,35 @@
 <div class="container my-3">
-  <h1><%= @user.name %>さんのページ</h1>
+  <% if @user.is_delete == true %>
+    <div class="delete">
+      このユーザーは退会しております。
+    </div>
+  <% else %>
+    <h1><%= @user.name %>さんのページ</h1>
+    <div class="user_date mt-5">
+     <%= image_tag @user.get_profile_image, size: "100x100" %>
+     <ul>
+       <li>ニックネーム： <%= @user.name %></li>
+       <li>コメント： <%= @user.comment %></li>
+       <li>投稿数：<%= @user.games.count %></li>
+       <li>いいね： <%= @user.favorites.count %></li>
+       <li>フォロー数： <%= link_to @user.followings.count, user_followings_path(@user.id) %></li>
+       <li>フォロワー数： <%= link_to @user.followers.count, user_followers_path(@user.id) %></li>
+     </ul>
+    </div>
+    <div class="follow">
+      <%= render "public/relationships/follow_btn", user: @user %>
+    </div>
 
-  <div class="user_date mt-5">
-   <%= image_tag @user.get_profile_image, size: "100x100" %>
-   <ul>
-     <li>ニックネーム： <%= @user.name %></li>
-     <li>コメント： <%= @user.comment %></li>
-     <li>投稿数：<%= @user.games.count %></li>
-     <li>いいね： <%= @user.favorites.count %></li>
-     <li>フォロー数： <%= link_to @user.followings.count, user_followings_path(@user.id) %></li>
-     <li>フォロワー数： <%= link_to @user.followers.count, user_followers_path(@user.id) %></li>
-   </ul>
-  </div>
-  <div class="follow">
-    <%= render "public/relationships/follow_btn", user: @user %>
-  </div>
+    <%= link_to "プロフィールの編集", edit_user_path(current_user), class:"btn btn-success" %>
+    <%= link_to "投稿する", new_game_path, class:"btn btn-primary" %>
 
-  <%= link_to "プロフィールの編集", edit_user_path(current_user), class:"btn btn-success" %>
-  <%= link_to "投稿する", new_game_path, class:"btn btn-primary" %>
-
-   <h2>投稿一覧</h2>
-   <div class="games row">
-     <% if @user.games.empty? %>
-       <h3>投稿はありません</h3>
-     <% else %>
-       <%= render "public/games/game_index", games: @user.games %>
-     <% end %>
-   </div>
-
-
-
+     <h2>投稿一覧</h2>
+     <div class="games row">
+       <% if @user.games.empty? %>
+         <h3>投稿はありません</h3>
+       <% else %>
+         <%= render "public/games/game_index", games: @user.games %>
+       <% end %>
+     </div>
+  <% end %>
 </div>
