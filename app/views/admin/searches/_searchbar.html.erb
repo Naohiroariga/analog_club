@@ -1,0 +1,13 @@
+<%= form_with method: :get, url: admin_search_path do |f| %>
+  <div class="d-flex">
+    <div class="border p-1">
+      <%= f.select :model, options_for_select([["ユーザー","user"], ["投稿","game"]]) %>
+    </div>
+    <div class="border p-1">
+      <%= f.text_field :word, placeholder: "Search", style: "border: 0; outline: 0;" %>
+      <%= f.button :type => "submit", style: "border-style: none; background: none;" do %>
+        <i class="fas fa-search"></i>
+      <% end %>
+    </div>
+  </div>
+<% end %>

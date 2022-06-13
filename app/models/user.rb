@@ -37,5 +37,8 @@ class User < ApplicationRecord
     followings.include?(user)
   end
 
+  def self.looks(word)
+    User.where("name LIKE ?", '%'+word+'%')
+  end
 
 end
