@@ -1,0 +1,25 @@
+<div class="container">
+  <h2>"<%= @word %>"の検索結果</h2>
+
+  <% if @model == "user" %>
+    <% if @users.empty? %>
+      <h3>見つかりませんでした。</h3>
+    <% else %>
+      <%= render "admin/users/index", users: @users %>
+    <% end %>
+  <% else %>
+    <div class="sort">
+      <%= link_to "投稿が新しい順", admin_search_path(word: @word, model: @model, new_date: true) %>  | <%= link_to "いいねの多い順", admin_search_path(word: @word, model: @model, favorite: true) %>
+    </div>
+      <% @tags.each do |tag| %>
+        <%= link_to tag, admin_filter_path(tag: tag, games: @games, model: @model, word: @word), class: "btn btn-outline-dark" %>
+      <% end %>
+    <div class="index row">
+      <% if @games.empty? %>
+        <h3>見つかりませんでした。</h3>
+      <% else %>
+        <%= render "admin/games/index", games: @games %>
+      <% end %>
+  <% end %>
+  </div>
+</div>

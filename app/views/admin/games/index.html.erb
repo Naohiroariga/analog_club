@@ -5,7 +5,7 @@
     <%= link_to "投稿が新しい順", admin_games_path(new_date: true) %> | <%= link_to "いいねの多い順", admin_games_path(favorite: true) %>
   </div>
     <% @tags.each do |tag| %>
-      <%= link_to tag, search_path(word: tag, model: "tag"), class: "btn btn-outline-dark" %>
+      <%= link_to tag, admin_search_path(word: tag, model: "tag"), class: "btn btn-outline-dark" %>
     <% end %>
   <div class="row">
     <%= render "admin/games/index", games: @games %>

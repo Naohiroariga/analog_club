@@ -35,6 +35,8 @@ Rails.application.routes.draw do
     resources :games, only: [:index, :show, :edit, :update] do
       resources :comments, only: [:update]
     end
+    get "search" => "searches#search", as: "search"
+    get "filter" => "searches#filter", as: "filter"
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
