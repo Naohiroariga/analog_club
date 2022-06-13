@@ -1,2 +1,18 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container">
+　<div class="heading-image my-3">
+    <div style="background:url(/assets/TOP画像.jpeg); background-size:cover;">
+      <div style="background-color: rgba(255,255,255,0.45);">
+        <h5 class="d-flex justify-content-center align-items-center" style="height: 400px;">
+          ようこそ！ アナログ部へ！<br>
+          このサイトではユーザー同士によるアナログゲームの紹介・レビューをしています。<br>
+          ここで新しいアナログゲームを発見し、遊んでみてはいかがでしょうか。
+        </h5>
+      </div>
+    </div>
+  </div>
+
+  <h3>＝New＝</h3>
+  <div class="row d-flex justify-content-center">
+    <%= render "public/games/game_index", games: @games %>
+  </div>
+</div>
