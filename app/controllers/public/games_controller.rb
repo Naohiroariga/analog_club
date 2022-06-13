@@ -1,5 +1,5 @@
 class Public::GamesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index, :show]
 
   def new
     @game = Game.new

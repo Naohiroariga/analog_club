@@ -6,7 +6,7 @@
     <%= render "public/games/show", game: @game %>
     <%= render "public/favorites/favorites", game: @game %>
     <br>
-    <% if @game.user_id == current_user.id %>
+    <% if user_signed_in? && @game.user_id == current_user.id %>
       <%= link_to "編集する", edit_game_path(@game), class: "btn btn-success" %>
       <%= link_to "削除する", game_path(@game), method: :delete, class: "btn btn-danger" %>
     <% end %>
