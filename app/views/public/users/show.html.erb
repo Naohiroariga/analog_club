@@ -21,11 +21,12 @@
             <li class="list-group-item" style="font-size: 18px;">フォロワー数： <%= link_to @user.followers.count, user_followers_path(@user.id) %></li>
           </ul>
           <div class="d-flex justify-content-center mt-1">
-          <% if @user.id == current_user.id %>
-            <%= link_to "プロフィールの編集", edit_user_path(@user), class:"btn btn-success" %>
-          <% end%>
-          <% if user_signed_in? && @user.id != current_user.id %>
-            <%= render "public/relationships/follow_btn", user: @user, class: "ml-3" %>
+          <% if user_signed_in? %>
+            <% if @user.id == current_user.id %>
+              <%= link_to "プロフィールの編集", edit_user_path(@user), class:"btn btn-success" %>
+            <% else %>
+              <%= render "public/relationships/follow_btn", user: @user, class: "ml-3" %>
+            <% end %>
           <% end %>
           </div>
         </div>
