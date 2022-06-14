@@ -14,7 +14,7 @@
       <% elsif comment.is_delete == true %>
         <%= link_to "コメント削除取り消し", admin_game_comment_path(comment.game, comment, is_delete: false), method: :patch, class: "btn btn-primary" %>
       <% end %>
-    <% elsif comment.user_id == current_user.id %>
+    <% elsif user_signed_in? && comment.user_id == current_user.id %>
       <%= link_to "コメント削除", game_comment_path(comment.game, comment), method: :delete, class: "btn btn-danger" %>
     <% end %>
   </div>
