@@ -1,36 +1,42 @@
-<div class="container">
- <h2>新規登録</h2>
+<div class="container" style="height: 600px; background:url(/assets/bg_image.jpeg); background-size: cover;">
+   <h2  class="d-flex justify-content-center mb-5 pt-5">新規登録</h2>
 
  <%= form_with model: @user, url: user_registration_path do |f| %>
    <%= render "public/shared/error_messages", resource: resource %>
 
-   <div class="field">
-     <%= f.label :ニックネーム %>
-     <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+   <div class="field row d-flex justify-content-center mb-3">
+     <label for="name" class="col-sm-3 col-form-label">ニックネーム</label>
+     <div class="col-sm-8">
+       <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+     </div>
+   </div>
+   <div class="field row d-flex justify-content-center mb-3">
+     <label for="email" class="col-sm-3 col-form-label">メールアドレス</label>
+     <div class="col-sm-8">
+       <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
+     </div>
+   </div>
+   <div class="field row d-flex justify-content-center mb-3">
+     <label for="password" class="col-sm-3 col-form-label">パスワード(6文字以上)</label>
+     <div class="col-sm-8">
+       <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+     </div>
    </div>
 
-   <div class="field">
-     <%= f.label :email %><br />
-     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+   <div class="field row d-flex justify-content-center mb-3">
+     <label for="password_confirmation" class="col-sm-3 col-form-label">パスワード（確認用）</label>
+     <div class="col-sm-8">
+     <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+     </div>
    </div>
 
-   <div class="field">
-     <%= f.label :password %>
-     <% if @minimum_password_length %>
-     <em>(<%= @minimum_password_length %> characters minimum)</em>
-     <% end %><br />
-     <%= f.password_field :password, autocomplete: "new-password" %>
-   </div>
-
-   <div class="field">
-     <%= f.label :password_confirmation %><br />
-     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-   </div>
-
-   <div class="actions">
-     <%= f.submit "Sign up" %>
+   <div class="actions d-flex justify-content-center">
+     <%= f.submit "Sign up", class: "col-4" %>
    </div>
  <% end %>
 
- <%= render "public/shared/links" %>
+  <div class="sign-up mt-5 pt-5">
+    <h5 class="d-flex justify-content-center px-3"> 既に登録済みの方</h3>
+    <p class="text-center"><%= link_to "こちら", new_user_session_path, class: "hover-link" %> からログインしてください。</p>
+  </div>
 </div>
