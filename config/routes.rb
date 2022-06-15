@@ -32,7 +32,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]
-    resources :games, only: [:index, :show, :edit, :update] do
+    resources :games, only: [:index, :show, :update] do
       resources :comments, only: [:update]
     end
     get "search" => "searches#search", as: "search"

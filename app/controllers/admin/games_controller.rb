@@ -24,9 +24,6 @@ class Admin::GamesController < ApplicationController
     @game = Game.find(params[:id])
   end
 
-  def edit
-  end
-
   def update
     @game = Game.find(params[:id])
     @game.update(is_delete: params[:is_delete])
