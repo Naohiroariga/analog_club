@@ -1,21 +1,40 @@
 <% game.comments.each do |comment| %>
-  <div class="comment my-3">
+  <div class="comment  row my-3">
     <% if comment.is_delete == true %>
-      このコメントは管理者により削除されております
+      <div class="col-2"></div>
+      <div class="col-7 alert alert-secondary">
+        このコメントは管理者により削除されております
+      </div>
     <% else %>
-      <%= image_tag comment.user.get_profile_image, size: "50x50" %>
-      <%= comment.user.name %>
-      <%= comment.comment %>
-      <%= comment.created_at.strftime('%Y/%m/%d') %>
+        <div class="comment-user col-2">
+          <%= link_to user_path(comment.user.id) do %>
+            <div class="user-image  text-center">
+              <%= image_tag comment.user.get_profile_image, size: "50x50" %>
+            </div>
+            <div class="user-name text-center">
+              <%= comment.user.name %>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-7 alert alert-secondary d-flex justify-content-between">
+          <div class="comments">
+            <%= comment.comment %>
+          </div>
+          <div class="align-self-end">
+            <%= comment.created_at.strftime('%Y/%m/%d') %>
+          </div>
+        </div>
     <% end %>
-    <% if admin_signed_in? %>
-      <% if comment.is_delete == false %>
-        <%= link_to "コメント削除", admin_game_comment_path(comment.game, comment, is_delete: true), method: :patch, class: "btn btn-danger" %>
-      <% elsif comment.is_delete == true %>
-        <%= link_to "コメント削除取り消し", admin_game_comment_path(comment.game, comment, is_delete: false), method: :patch, class: "btn btn-primary" %>
-      <% end %>
-    <% elsif user_signed_in? && comment.user_id == current_user.id %>
-      <%= link_to "コメント削除", game_comment_path(comment.game, comment), method: :delete, class: "btn btn-danger" %>
-    <% end %>
+        <div class="delete_bottun ml-3 align-items-center">
+        <% if admin_signed_in? %>
+          <% if comment.is_delete == false %>
+            <%= link_to "コメント削除", admin_game_comment_path(comment.game, comment, is_delete: true), method: :patch, class: "btn btn-danger" %>
+          <% elsif comment.is_delete == true %>
+            <%= link_to "コメント削除取り消し", admin_game_comment_path(comment.game, comment, is_delete: false), method: :patch, class: "btn btn-primary" %>
+          <% end %>
+        <% elsif user_signed_in? && comment.user_id == current_user.id %>
+          <%= link_to "コメント削除", game_comment_path(comment.game, comment), method: :delete, class: "btn btn-danger" %>
+        <% end %>
+        </div>
   </div>
 <% end %>

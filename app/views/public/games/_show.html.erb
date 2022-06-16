@@ -1,15 +1,49 @@
-  <%= image_tag game.image, size: "200x200" %>
-  <p>投稿者</p> <%= link_to game.user.name, user_path(game.user_id) %>
-  <p>ゲーム名</p> <%= game.name %>
-  <p>概要</p> <%= game.overview %>
-  <p>操作説明</p> <%= game.how_to_use %>
-  <p>タグ</p>
-    <% game.tags.each do |tag| %>
-      <%= link_to tag.tag, search_path(word: tag.tag, model: "tag") %>
-    <% end %>
-  <p>評価</p>
+<div class="game_show d-flex justify-content-center">
+  <div class="card mb-3 p-3" style="background:url(/assets/bg_image.jpeg); background-size: cover; width: 90%;">
+    <div class="edit_button text-right mb-3">
+      <% if admin_signed_in? %>
+        <% if @game.is_delete == false %>
+          <%= link_to "投稿を削除する", admin_game_path(@game, is_delete: true), method: :patch, class: "btn btn-danger" %>
+        <% else %>
+          <%= link_to "投稿の削除を取り消す", admin_game_path(@game, is_delete: false), method: :patch, class: "btn btn-primary" %>
+        <% end %>
+      <% elsif user_signed_in? && @game.user_id == current_user.id %>
+        <%= link_to "編集する", edit_game_path(@game), class: "btn btn-success" %>
+        <%= link_to "削除する", game_path(@game), method: :delete, class: "btn btn-danger" %>
+      <% end %>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="game_date">
+          <ul class="list-group">
+            <li class="list-group-item">ゲーム名: <%= game.name %></li>
+            <li class="list-group-item">プレイ人数：<%= game.player %></li>
+            <li class="list-group-item d-flex">
+              タグ:
+              <% game.tags.each do |tag| %>
+               <%= link_to tag.tag, search_path(word: tag.tag, model: "tag"), class: "btn btn-outline-dark ml-2" %>
+              <% end %>
+            </li>
+            <li class="list-group-item">概要: <%= game.overview %></li>
+            <li class="list-group-item">操作説明: <%= game.how_to_use %></li>
+            <li class="list-group-item">投稿者: <%= link_to game.user.name, user_path(game.user_id) %></li>
+            <li class="list-group-item">
+              <%= render "public/favorites/favorites", game: game %>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-6 d-flex justify-content-center">
+        <canvas id="myChart" width="400" hight="400" class="bg-white"></canvas>
+      </div>
+    </div>
+    <p style="font-size: 30px;"><<ゲーム画像>></p>
+    <div class="game_image text-center">
+        <%= image_tag game.image, size: "400x300" %>
+    </div>
+  </div>
+</div>
 
-  <canvas id="myChart" width="400" hight="400"></canvas>
 　<script>
    $(document).on('turbolinks:load', function() {
      var ctx = document.getElementById('myChart');

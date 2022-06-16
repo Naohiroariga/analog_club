@@ -13,6 +13,10 @@
 
   <h3>＝New＝</h3>
   <div class="row d-flex align-items-center flex-wrap justify-content-center">
-    <%= render "public/games/game_index", games: @games %>
+    <% if admin_signed_in? %>
+      <%= render "admin/games/index", games: @games %>
+    <% else %>
+      <%= render "public/games/game_index", games: @games %>
+    <% end %>
   </div>
 </div>
