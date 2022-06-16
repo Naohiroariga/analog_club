@@ -7,11 +7,7 @@
 
   <%= render "public/games/show", game: @game %>
 
-  <% if @game.is_delete == false %>
-    <%= link_to "投稿を削除する", admin_game_path(@game, is_delete: true), method: :patch, class: "btn btn-danger" %>
-  <% else %>
-    <%= link_to "投稿の削除を取り消す", admin_game_path(@game, is_delete: false), method: :patch, class: "btn btn-primary" %>
-  <% end %>
+
 
   <h2>コメント</h2>
   <%= render "public/comments/comment_list", game: @game %>

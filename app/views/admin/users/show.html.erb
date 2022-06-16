@@ -32,9 +32,9 @@
     </div>
 
    <h2 class="mt-3">投稿一覧</h2>
-   <div class="games row d-flex flex-wrap justify-content-center overflow-auto", style="height: 550px; background:url(/assets/bg_image.jpeg); background-size: cover;">
+   <div class="games row d-flex flex-wrap justify-content-center overflow-auto", style="max-height: 550px; background:url(/assets/bg_image.jpeg); background-size: cover;">
      <% if @user.games.empty? %>
-       <h3>投稿はありません</h3>
+       <h3 class="py-3">投稿はありません</h3>
      <% else %>
        <%= render "admin/games/index", games: @user.games %>
      <% end %>
