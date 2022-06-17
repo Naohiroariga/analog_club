@@ -27,6 +27,6 @@ class Admin::GamesController < ApplicationController
   def update
     @game = Game.find(params[:id])
     @game.update(is_delete: params[:is_delete])
-    redirect_to admin_game_path(@game)
+    redirect_to admin_game_path(@game), notice: "投稿を更新しました"
   end
 end

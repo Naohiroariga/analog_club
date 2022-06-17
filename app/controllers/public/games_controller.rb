@@ -11,7 +11,7 @@ class Public::GamesController < ApplicationController
     tag_list = params[:game][:tag_name].split(',')
     if @game.save
       @game.save_tags(tag_list)
-      redirect_to game_path(@game)
+      redirect_to game_path(@game), notice: "ゲーム情報の投稿をしました"
     else
       render "new"
     end
@@ -20,7 +20,7 @@ class Public::GamesController < ApplicationController
   def destroy
     @game = Game.find(params[:id])
     @game.destroy
-    redirect_to games_path
+    redirect_to games_path, notice: "ゲーム情報を削除しました。"
   end
 
   def edit
@@ -37,7 +37,7 @@ class Public::GamesController < ApplicationController
     tag_list = params[:game][:tag_name].split(',')
     if @game.update(game_params)
       @game.save_tags(tag_list)
-      redirect_to game_path(@game)
+      redirect_to game_path(@game), notice: "ゲーム情報を編集しました"
     else
       render "edit"
     end
