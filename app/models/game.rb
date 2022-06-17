@@ -6,8 +6,10 @@ class Game < ApplicationRecord
   has_many :favorites, dependent: :destroy
 
   validates :name, presence: true
+  validates :player, presence:true
   validates :overview, presence: true
   validates :how_to_use, presence: true
+  validates :image, presence: true
 
   validates :game_quality, numericality: {
     less_than_or_equal_to: 5,
