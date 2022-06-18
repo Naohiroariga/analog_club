@@ -3,7 +3,7 @@
 </div>
 <div class="container my-3">
   <h1><%= @username %>さんのプロフィール編集</h1>
-  <div class="user_edit" style="height: 500px; background:url(/assets/bg_image.jpeg); background-size: cover;">
+  <div class="user_edit" style="height: 500px; background:url(../../assets/bg_image.jpg); background-size: cover;">
   <%= form_with model: @user, local: true do |f| %>
     <%= render "public/users/edit_form", f: f %>
     <div class="form-group d-flex justify-content-center">
