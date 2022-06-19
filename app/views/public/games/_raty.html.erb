@@ -1,0 +1,92 @@
+    <a>ゲーム性 :</a>
+    <div class="ster_form-group" id="star1">
+      <%= f.hidden_field :game_quality, id: :review_star %>
+    </div>
+    <script>
+      $(document).on('turbolinks:load', function() {
+        $('#star1').empty();
+        $('#star1').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          scoreName: 'game[game_quality]',
+          half: false,
+          score: <%= game.game_quality %>
+        });
+      });
+    </script>
+    <a>戦略性 :</a>
+    <div class="ster_form-group" id="star2">
+      <%= f.hidden_field :strategic, id: :review_star %>
+    </div>
+    <script>
+      $(document).on('turbolinks:load', function() {
+        $('#star2').empty();
+        $('#star2').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          scoreName: 'game[strategic]',
+          half: false,
+          score: <%= game.strategic %>
+        });
+      });
+    </script>
+    <a>協力性 :</a>
+    <div class="ster_form-group" id="star3">
+      <%= f.hidden_field :cooperation, id: :review_star %>
+    </div>
+    <script>
+      $(document).on('turbolinks:load', function() {
+        $('#star3').empty();
+        $('#star3').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          scoreName: 'game[cooperation]',
+          half: false,
+          score: <%= game.cooperation %>
+        });
+      });
+    </script>
+    <a>盛り上がり度 :</a>
+    <div class="ster_form-group" id="star4">
+      <%= f.hidden_field :excitement, id: :review_star %>
+    </div>
+    <script>
+      $(document).on('turbolinks:load', function() {
+        $('#star4').empty();
+        $('#star4').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          scoreName: 'game[excitement]',
+          half: false,
+          score: <%= game.excitement %>
+        });
+      });
+    </script>
+    <a>運 :</a>
+    <div class="ster_form-group" id="star5">
+      <%= f.hidden_field :luck, id: :review_star %>
+    </div>
+    <script>
+      $(document).on('turbolinks:load', function() {
+        $('#star5').empty();
+        $('#star5').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          scoreName: 'game[luck]',
+          half: false,
+          score: <%= game.luck %>
+        });
+      });
+    </script>
+    <div class="form-group mt-3">
+      <%= f.label :"画像:" %>
+      <%= f.file_field :image,  accept: "image/*" %>
+    </div>
+    <div class="form-group">
+        <%= f.submit "編集する", class: "btn btn-success  form-control" %>
+    </div>

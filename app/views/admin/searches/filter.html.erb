@@ -1,0 +1,29 @@
+<div class="container">
+  <h2>絞り込み結果</h2>
+  <div class="card px-3 pb-2">
+    <div class="card-head">
+      <p style="font-size: 20px;"><<絞り込み>></p>
+    </div>
+    <div class="body">
+      <div class="sort d-flex">
+       <p>並び替え：</p>
+       <%= link_to "投稿が新しい順", admin_filter_path(tag: @tag, games: @games, model: @model, word: @word, new_date: true), class: "mr-2" %>  | <%= link_to "いいねの多い順", admin_filter_path(tag: @tag, games: @games,  model: @model, word: @word, favorite: true), class: "ml-2" %>
+      </div>
+      <div class="tags d-flex flex-wrap">
+       <P class="mr-2">タグ検索:</P>
+       <% @tags.each do |tag| %>
+         <%= link_to tag, admin_filter_path(tag: tag, games: @games, model: @model, word: @word), class: "btn btn-outline-dark mr-2" %>
+       <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-center mt-3 overflow-auto" style="max-height: 550px; background:url(../../assets/bg_image.jpg); background-size: cover;">
+    <% if @games.empty? %>
+      <h3>見つかりませんでした。</h3>
+    <% else %>
+      <%= render "admin/games/index", games: @games %>
+
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="container">
+　<div class="heading-image my-3">
+    <div style="background:url(../../assets/TOP画像.jpg); background-size:cover;">
+      <div style="background-color: rgba(255,255,255,0.6);">
+        <h5 class="d-flex justify-content-center align-items-center" style="height: 400px;">
+          ようこそ！ アナログ部へ！<br>
+          このサイトではユーザー同士によるアナログゲームの紹介・レビューをしています。<br>
+          ここで新しいアナログゲームを発見し、遊んでみてはいかがでしょうか。
+        </h5>
+      </div>
+    </div>
+  </div>
+
+  <h3>＝New＝</h3>
+  <div class="row d-flex align-items-center flex-wrap justify-content-center">
+    <% if admin_signed_in? %>
+      <%= render "admin/games/index", games: @games %>
+    <% else %>
+      <%= render "public/games/game_index", games: @games %>
+    <% end %>
+  </div>
+</div>

@@ -6,11 +6,30 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.js"></script>
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <% if user_signed_in? %>
+        <%= render "layouts/after_sign_in_header" %>
+      <% elsif admin_signed_in? %>
+        <%= render "layouts/admin_header" %>
+      <% else%>
+        <%= render "layouts/defoult_header" %>
+      <% end %>
+    </header>
+    <main class="mb-5">
+       <div class="text-center" style="height:30px;">
+        <div id="flash-message" style="display:none;">
+          <%= render "layouts/flash_message" %>
+        </div>
+      </div>
+      <%= yield %>
+    </main>
   </body>
+  <footer class="text-center fixed-bottom bg-secondary mt-3 pt-1 text-light" style="height: 40px"><small>©アナログ部</small>
+  </footer>
 </html>

@@ -1,0 +1,3 @@
+$('.message').append("<%= j(render "public/chats/chat", chat: @chat) %>");
+$('.errors').html("<%= j(render 'layouts/errors', model: @chat) %>");
+$('input[type=text]').val("")
