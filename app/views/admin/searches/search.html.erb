@@ -19,8 +19,10 @@
         </div>
         <div class="tags d-flex flex-wrap">
          <P class="mr-2">タグ検索:</P>
-         <% @tags.each do |tag| %>
-           <%= link_to tag, admin_filter_path(tag: tag, games: @games, model: @model, word: @word), class: "btn btn-outline-dark mr-2" %>
+         <% unless @tags.nil? %>
+           <% @tags.each do |tag| %>
+             <%= link_to tag, admin_filter_path(tag: tag, games: @games, model: @model, word: @word), class: "btn btn-outline-dark mr-2" %>
+           <% end %>
          <% end %>
         </div>
       </div>
