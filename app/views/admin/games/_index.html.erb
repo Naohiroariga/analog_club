@@ -7,11 +7,11 @@
         <% if game.is_delete == true %>
           <p>この投稿は削除しております。</p>
         <% else %>
-          <p class="card-text" style="height:125px;">
+          <p class="card-text" style="height:80px;">
             概要：<br>
             <%= game.overview %>
           </p>
-          <p class="card-text" style="height:50px;">
+          <p class="card-text" style="height:25px;">
             タグ：
             <% game.tags.each do |tag| %>
               <%= tag.tag %>
