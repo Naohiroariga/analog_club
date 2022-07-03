@@ -26,6 +26,8 @@
             </li>
             <li class="list-group-item">概要: <%= game.overview %></li>
             <li class="list-group-item">操作説明: <%= game.how_to_use %></li>
+            <li class="list-group-item">感想: <%= game.impression %></li>
+            <li class="list-group-item">点数：<%= game.score %></li>
             <li class="list-group-item">投稿者: <%= link_to game.user.name, user_path(game.user_id) %></li>
             <li class="list-group-item">
               <%= render "public/favorites/favorites", game: game %>
