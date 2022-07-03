@@ -8,6 +8,8 @@ class Public::GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     @game.user_id = current_user.id
+    
+    @game.score = Language.get_data(game_params[:impression])
     tag_list = params[:game][:tag_name].split(',')
     if @game.save
       @game.save_tags(tag_list)
@@ -36,6 +38,8 @@ class Public::GamesController < ApplicationController
     @game = Game.find(params[:id])
     tag_list = params[:game][:tag_name].split(',')
     if @game.update(game_params)
+      @game.score = Language.get_data(game_params[:impression])
+      @game.update(score: @game.score)
       @game.save_tags(tag_list)
       redirect_to game_path(@game), notice: "ゲーム情報を編集しました"
     else
@@ -71,7 +75,7 @@ class Public::GamesController < ApplicationController
   private
 
   def game_params
-    params.require(:game).permit(:name, :player, :overview, :how_to_use, :game_quality, :strategic, :cooperation, :excitement, :luck, :image)
+    params.require(:game).permit(:name, :player, :overview, :how_to_use, :game_quality, :strategic, :cooperation, :excitement, :luck, :image, :impression)
   end
 
 end
