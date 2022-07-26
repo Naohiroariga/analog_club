@@ -1,2 +1,31 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+.main-kv {
+  background-image: url("../images/TOP画像.jpg");
+  background-size:cover;
+}
+
+.user-kv {
+  background-image: url("../images/bg_image.jpg");
+  background-size:cover;
+  width: 80%;
+}
+
+.user-edit {
+  background-image: url("../images/bg_image.jpg");
+  background-size:cover;
+  height: 500px;
+}
+
+.index-kv {
+  background-image: url("../images/bg_image.jpg");
+  background-size:cover;
+  max-height: 550px;
+}
+
+.item-kv {
+  background-image: url("../images/bg_image.jpg");
+  background-size:cover;
+  width: 90%;
+}

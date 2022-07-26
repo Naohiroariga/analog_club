@@ -22,7 +22,11 @@
        <%= f.text_area :how_to_use, class: "form-control" %>
      </div>
    </div>
-   <div class="col-4 mx-3 px-5">
+   <div class="col-5 mx-3 px-3">
+     <div class="form-group">
+       <%= f.label :"遊んでみた感想:" %>
+       <%= f.text_area :impression, class: "form-control" %>
+     </div>
      <% if game.id === nil %>
        <a>ゲーム性 :</a>
        <div class="ster_form-group" id="star1">

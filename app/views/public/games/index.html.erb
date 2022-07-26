@@ -12,13 +12,15 @@
       </div>
       <div class="tags d-flex flex-wrap">
        <P class="mr-2">タグ検索:</P>
-       <% @tags.each do |tag| %>
-         <%= link_to tag, search_path(word: tag, model: "tag"), class: "btn btn-outline-dark mr-2" %>
+       <% unless @tags.nil? %>
+         <% @tags.each do |tag| %>
+          <%= link_to tag, search_path(word: tag, model: "tag"), class: "btn btn-outline-dark mr-2" %>
+         <% end %>
        <% end %>
       </div>
     </div>
   </div>
-  <div class="row d-flex justify-content-center mt-3 overflow-auto" style="max-height: 550px; background:url(../../assets/bg_image.jpg); background-size: cover;">
+  <div class="index-kv row d-flex justify-content-center mt-3 overflow-auto">
     <%= render "public/games/game_index", games: @games %>
   </div>
 

@@ -7,17 +7,18 @@
         <% if game.is_delete == true %>
           <p>この投稿は削除しております。</p>
         <% else %>
-          <p class="card-text" style="height:125px;">
+          <p class="card-text" style="height:80px;">
             概要：<br>
             <%= game.overview %>
           </p>
-          <p class="card-text" style="height:50px;">
+          <p class="card-text" style="height:25px;">
             タグ：
             <% game.tags.each do |tag| %>
               <%= tag.tag %>
             <% end %>
           </p>
-        <i  class="fas fa-heart" aria-hidden="true"></i><%= game.favorites.count %>いいね<br>
+          <p>投稿日：<%= game.created_at.strftime('%Y年%m月%d日') %></p>
+          <i  class="fas fa-heart" aria-hidden="true"></i><%= game.favorites.count %>いいね<br>
         <% end %>
       </div>
       <%= link_to "詳細ページへ", admin_game_path(game.id), class: "btn btn-primary" %>
