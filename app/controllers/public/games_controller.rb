@@ -8,7 +8,6 @@ class Public::GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     @game.user_id = current_user.id
-    
     @game.score = Language.get_data(game_params[:impression])
     tag_list = params[:game][:tag_name].split(',')
     if @game.save

@@ -17,7 +17,8 @@
               <%= tag.tag %>
             <% end %>
           </p>
-        <i  class="fas fa-heart" aria-hidden="true"></i><%= game.favorites.count %>いいね<br>
+          <p>投稿日：<%= game.created_at.strftime('%Y年%m月%d日') %></p>
+          <i  class="fas fa-heart" aria-hidden="true"></i><%= game.favorites.count %>いいね<br>
         <% end %>
       </div>
       <%= link_to "詳細ページへ", admin_game_path(game.id), class: "btn btn-primary" %>
