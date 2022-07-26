@@ -29,6 +29,7 @@
             <li class="list-group-item">感想: <%= game.impression %></li>
             <li class="list-group-item">点数：<%= game.score %></li>
             <li class="list-group-item">投稿者: <%= link_to game.user.name, user_path(game.user_id) %></li>
+            <li class='list-group-item'>投稿日：<%= game.created_at.strftime("%Y年%m月%d日") %></li>
             <li class="list-group-item">
               <%= render "public/favorites/favorites", game: game %>
             </li>
