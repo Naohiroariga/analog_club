@@ -11,7 +11,7 @@
           <h5 class="card-title">ゲーム名：<%= game.name %></h5>
           <p class="card-text" style="height:60px;">
             概要：<br>
-            <%= game.overview %>
+            <%= game.overview.truncate(28) %>
           </p>
           <p class="card-text" style="height:25px;">
             タグ：
