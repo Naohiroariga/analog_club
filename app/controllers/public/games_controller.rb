@@ -55,9 +55,7 @@ class Public::GamesController < ApplicationController
     if params[:new_date]
       @games = Game.all.order(created_at: :desc)
     elsif params[:favorite]
-      favorite = Game.find(Favorite.group(:game_id).order('count(game_id) desc').pluck(:game_id))
-      all = Game.all
-      @games = favorite + (all - favorite)
+      @games = Game.left_joins(:favorites).group(:id).order('count(game_id) desc')
     else
       @games = Game.all
     end
