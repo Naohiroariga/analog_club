@@ -20,7 +20,7 @@
             <% end %>
           </p>
           <p>投稿日：<%= game.created_at.strftime('%Y年%m月%d日') %></p>
-          <p><%= render "public/favorites/favorites", game: game %></p>
+          <p id="favorites_botton_<%= game.id %>"><%= render "public/favorites/favorites", game: game %></p>
         </div>
       <% end %>
       <%= link_to "詳細ページへ", game_path(game.id), class: "btn btn-primary" %>
