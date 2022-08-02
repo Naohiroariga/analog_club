@@ -30,7 +30,7 @@
             <li class="list-group-item">点数：<%= game.score %></li>
             <li class="list-group-item">投稿者: <%= link_to game.user.name, user_path(game.user_id) %></li>
             <li class='list-group-item'>投稿日：<%= game.created_at.strftime("%Y年%m月%d日") %></li>
-            <li class="list-group-item">
+            <li class="list-group-item" id="favorites_botton_<%= game.id %>">
               <%= render "public/favorites/favorites", game: game %>
             </li>
           </ul>
